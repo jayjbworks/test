@@ -1,6 +1,7 @@
 package control
 
 import "encoding/hex"
+import "fmt"
 
 type Controller struct {
 	Transport Transport
@@ -23,6 +24,7 @@ func (c *Controller) SendBytes(data []byte, responseSize int) ([]byte, error) {
 	}
 	sum := Checksum(data)
 	data = append(data, sum)
+	fmt.Println(data)
 	return c.SendBytesRaw(data, responseSize)
 }
 
